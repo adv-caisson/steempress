@@ -288,10 +288,12 @@ class Steempress_sp_Admin {
             $display_backlink = "false";
 
         $content = $post->post_content;
+        $content = apply_filters('the_content', $content);
+        $content = str_replace(']]>', ']]&gt;', $content);
         if ($options["featured"] == "on") {
             $thumbnail = wp_get_attachment_url(get_post_thumbnail_id($id), 'thumbnail');
             if ($thumbnail != "0")
-                $content = "<center>" . $thumbnail . "</center> <br/>" . $post->post_content;
+                $content = "<center>" . $thumbnail . "</center> <br/>" .  $content;
         }
 
         $domain = get_site_url();
@@ -860,10 +862,12 @@ class Steempress_sp_Admin {
                     $display_backlink = "false";
 
                 $content = $post->post_content;
+                $content = apply_filters('the_content', $content);
+                $content = str_replace(']]>', ']]&gt;', $content);
                 if ($options["featured"] == "on") {
                     $thumbnail = wp_get_attachment_url(get_post_thumbnail_id($post_id), 'thumbnail');
                     if ($thumbnail != "0")
-                        $content = "<center>" . $thumbnail . "</center> <br/>" . $post->post_content;
+                        $content = "<center>" . $thumbnail . "</center> <br/>" . $content;
                 }
 
                 $version = steempress_sp_compte;
